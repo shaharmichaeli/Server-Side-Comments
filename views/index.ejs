@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <title>Title</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+
+    <body>
+        <div class="jumbotron" style="height:100vh;">
+            <div class="container-full-bg text-center">
+                <h1 class="display-3">Home Page</h1>
+                <p class="lead">Shows some comments below..</p>
+                <hr class="my-2">
+                <form action="/comments/newComment" method="post">
+                    <label for="user">Name</label>
+                    <input type="text" id="user" name="user">
+                    <label for="comment">Comment</label>
+                    <input type="text" id="comment" name="comment">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+
+            <ul class="list-group container">
+                <% datas.forEach( data => { %>
+                <li class="list-group-item">
+                    <strong><%= data.comment %></strong> - : <strong><span style="font-size: 10px;"> By
+                            <%= data.user %></span></strong>
+                    <div class="btn-group" role="group" aria-label="Basic example" style="float: right;">
+                        <form action="/comments/show/<%= data.id %>" method="get" style="float:right;margin: 1px">
+                            <button type="submit" class="btn btn-secondary btn-sm">Show</button>
+                        </form>
+                        <form action="/comments/edit/<%= data.id %>" method="get" style="float:right; margin: 1px">
+                            <button type=" submit" class="btn btn-secondary btn-sm">Edit</button>
+                        </form>
+                        <form action="/comments/<%= data.id %>?_method=DELETE" method="post"
+                            style="float: right; margin: 1px">
+                            <button type=" submit" class="btn btn-secondary btn-sm">Delete</button>
+                        </form>
+                    </div>
+                </li>
+                <% }) %>
+            </ul>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.js"
+            integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    </body>
+
+</html>
